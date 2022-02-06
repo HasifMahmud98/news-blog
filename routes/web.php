@@ -21,6 +21,7 @@ use App\Http\Controllers\FrontendController;
 
 //Frontend Routes
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/blog/{id}', [FrontendController::class, 'singleBlog'])->name('blog_view');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
