@@ -17,19 +17,19 @@ use App\Http\Controllers\FrontendController;
 //     return view('welcome');
 // });
 
-// Auth::routes();
+Auth::routes();
 
 //Frontend Routes
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/blog/{id}', [FrontendController::class, 'singleBlog'])->name('blog_view');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+//Backend Routes
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => '/blog', 'middleware' => 'auth'], function(){
 
-    Route::get('/', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
-    Route::get('/create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog_create');
+    Route::get('/', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+    Route::get('/create/add', [App\Http\Controllers\BlogController::class, 'create'])->name('blog_create');
     Route::post('/create', [App\Http\Controllers\BlogController::class, 'store'])->name('blog_store');
     Route::get('/edit/{id}', [App\Http\Controllers\BlogController::class, 'edit'])->name('blog_edit');
     Route::post('/edit/{id}', [App\Http\Controllers\BlogController::class, 'update'])->name('blog_update');
